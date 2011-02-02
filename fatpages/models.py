@@ -6,7 +6,7 @@ from ckeditor.fields import RichTextField
 class FatPage(models.Model):
 	url = models.CharField(_('URL'), max_length=100, db_index=True)
 	title = models.CharField(_('title'), max_length=200)
-	content = RichTextField('Content', null=True, blank=True)
+	content = RichTextField(null=True, blank=True)
 	enable_comments = models.BooleanField(_('enable comments'))
 	template_name = models.CharField(_('template name'), max_length=70, blank=True,
 									 help_text=_("Example: 'fatpages/contact_page.html'. If this isn't provided, the system will use 'fatpages/default.html'."))
