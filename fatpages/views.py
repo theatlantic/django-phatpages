@@ -1,5 +1,5 @@
 from fatpages.models import FatPage
-from django.template import loader, RequestContext
+from coffin.template import loader, RequestContext
 from django.shortcuts import get_object_or_404
 from django.http import HttpResponse, HttpResponseRedirect
 from django.conf import settings
