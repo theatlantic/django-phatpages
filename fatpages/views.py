@@ -7,7 +7,12 @@ from django.core.xheaders import populate_xheaders
 from django.utils.safestring import mark_safe
 from django.views.decorators.csrf import csrf_protect
 
-DEFAULT_TEMPLATE = 'fatpages/default.html'
+import settings
+
+if hasattr(settings, 'FATPAGES_DEFAULT_TEMPLATE'):
+	DEFAULT_TEMPLATE = settings.FATPAGES_DEFAULT_TEMPLATE
+else:
+	DEFAULT_TEMPLATE = 'staticpages/default.html'
 
 # This view is called from FatpageFallbackMiddleware.process_response
 # when a 404 is raised, which often means CsrfViewMiddleware.process_view

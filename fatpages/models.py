@@ -9,7 +9,7 @@ class FatPage(models.Model):
 	content = RichTextField(null=True, blank=True)
 	enable_comments = models.BooleanField(_('enable comments'))
 	template_name = models.CharField(_('template name'), max_length=70, blank=True,
-									 help_text=_("Example: 'fatpages/contact_page.html'. If this isn't provided, the system will use 'fatpages/default.html'."))
+									 help_text=_("Example: 'staticpages/contact_page.html'. If this isn't provided, the system will use 'the default."))
 
 	registration_required = models.BooleanField(_('registration required'), help_text=_("If this is checked, only logged-in users will be able to view the page."))
 

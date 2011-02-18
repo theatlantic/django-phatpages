@@ -18,7 +18,7 @@ class FatpageForm(forms.ModelForm):
 class FatPageAdmin(admin.ModelAdmin):
     form = FatpageForm
     fieldsets = (
-        (None, {'fields': ('url', 'title', 'content')}),
+        (None, {'fields': ('url', 'title', 'content', 'enable_comments')}),
     )
     list_display = ('title', 'url')
     search_fields = ('title', 'url')
