@@ -18,7 +18,6 @@ class FatPage(models.Model):
 		verbose_name = _('static page')
 		verbose_name_plural = _('static pages')
 		ordering = ('url',)
-		app_label = 'staticpages'
 
 	def __unicode__(self):
 		return u"%s -- %s" % (self.url, self.title)

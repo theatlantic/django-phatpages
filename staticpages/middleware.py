@@ -1,4 +1,4 @@
-from fatpages.views import fatpage
+from staticpages.views import fatpage
 from django.http import Http404
 from django.conf import settings
 

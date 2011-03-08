@@ -1,4 +1,4 @@
-from fatpages.models import FatPage
+from staticpages.models import FatPage
 from coffin.template import loader, RequestContext
 from django.shortcuts import get_object_or_404
 from django.http import HttpResponse, HttpResponseRedirect
@@ -26,12 +26,12 @@ def fatpage(request, url):
     """
     Public interface to the fat page view.
 
-    Models: `fatpages.fatpages`
+    Models: `staticpages.fatpages`
     Templates: Uses the template defined by the ``template_name`` field,
         or `fatpages/default.html` if template_name is not defined.
     Context:
         fatpage
-            `fatpages.fatpages` object
+            `staticpages.fatpages` object
     """
     if not url.endswith('/') and settings.APPEND_SLASH:
         return HttpResponseRedirect("%s/" % request.path)

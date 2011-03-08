@@ -1,6 +1,6 @@
 from django import forms
 from django.contrib import admin
-from fatpages.models import FatPage
+from staticpages.models import FatPage
 from django.utils.translation import ugettext_lazy as _
 
 
