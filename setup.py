@@ -1,8 +1,11 @@
+#!/usr/bin/python
+
+# Use setuptools if we can
+try:
+    from setuptools.core import setup
+except ImportError:
+    from distutils.core import setup
 import os
-from setuptools import setup, find_packages
-
-from fatpages import VERSION
-
 
 f = open(os.path.join(os.path.dirname(__file__), 'README.txt'))
 readme = f.read()
@@ -10,23 +13,11 @@ f.close()
 
 setup(
     name='django-fatpages',
-    version=".".join(map(str, VERSION)),
-    description='django-fatpages is a reusable Django application for simple static pages.',
+    version='0.1',
+    description='A reusable Django application for simple static pages.',
     long_description=readme,
     author='Josh West',
-    author_email='',
     url='https://github.com/theatlantic/django-fatpages',
-    packages=find_packages(),
-    zip_safe=False,
-    classifiers=[
-        'Development Status :: 4 - Beta',
-        'Environment :: Web Environment',
-        'Intended Audience :: Developers',
-        'License :: OSI Approved :: BSD License',
-        'Operating System :: OS Independent',
-        'Programming Language :: Python',
-        'Framework :: Django',
-    ],
+    download_url='https://github.com/theatlantic/django-fatpages/tarball/master',
+    packages=['staticpages'],
 )
-
-
