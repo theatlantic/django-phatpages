@@ -1,13 +1,18 @@
+from django.conf import settings
 from staticpages.models import FatPage
-from coffin.template import loader, RequestContext
+
+try:
+	from coffin.template import loader, RequestContext
+except ImportError:
+	print 'ImportError'
+	from django.template import loader, RequestContext
+
 from django.shortcuts import get_object_or_404
 from django.http import HttpResponse, HttpResponseRedirect
-from django.conf import settings
 from django.core.xheaders import populate_xheaders
 from django.utils.safestring import mark_safe
 from django.views.decorators.csrf import csrf_protect
 
-import settings
 
 if hasattr(settings, 'FATPAGES_DEFAULT_TEMPLATE'):
 	DEFAULT_TEMPLATE = settings.FATPAGES_DEFAULT_TEMPLATE

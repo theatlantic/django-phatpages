@@ -8,7 +8,7 @@ except ImportError:
 
 setup(
     name='django-fatpages',
-    version='0.1',
+    version='0.2',
     description='A reusable Django application for simple static pages.',
     long_description=open('README.txt').read(),
     author='Josh West',
