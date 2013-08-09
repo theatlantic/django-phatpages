@@ -2,10 +2,10 @@ from django.conf import settings
 from staticpages.models import FatPage
 
 try:
-	from coffin.template import loader, RequestContext
+    from coffin.template import loader, RequestContext
 except ImportError:
-	print 'ImportError'
-	from django.template import loader, RequestContext
+    print 'ImportError'
+    from django.template import loader, RequestContext
 
 from django.shortcuts import get_object_or_404
 from django.http import HttpResponse, HttpResponseRedirect
@@ -15,9 +15,10 @@ from django.views.decorators.csrf import csrf_protect
 
 
 if hasattr(settings, 'FATPAGES_DEFAULT_TEMPLATE'):
-	DEFAULT_TEMPLATE = settings.FATPAGES_DEFAULT_TEMPLATE
+    DEFAULT_TEMPLATE = settings.FATPAGES_DEFAULT_TEMPLATE
 else:
-	DEFAULT_TEMPLATE = 'staticpages/default.html'
+    DEFAULT_TEMPLATE = 'staticpages/default.html'
+
 
 # This view is called from FatpageFallbackMiddleware.process_response
 # when a 404 is raised, which often means CsrfViewMiddleware.process_view
@@ -44,6 +45,7 @@ def fatpage(request, url):
         url = "/" + url
     f = get_object_or_404(FatPage, url__exact=url)
     return render_fatpage(request, f)
+
 
 @csrf_protect
 def render_fatpage(request, f):
