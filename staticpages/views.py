@@ -46,6 +46,12 @@ def fatpage(request, url):
     f = get_object_or_404(FatPage, url__exact=url)
     return render_fatpage(request, f)
 
+# If a default Cache-Header Max-Age is defined in the settings
+# Apply it to Fatpages
+if hasattr(settings, 'CACHE_HEADER_MAX_AGE'):
+    from django.views.decorators.cache import cache_control
+    fatpage = cache_control(must_revalidate=True, max_age=settings.CACHE_HEADER_MAX_AGE)(fatpage)
+
 
 @csrf_protect
 def render_fatpage(request, f):
