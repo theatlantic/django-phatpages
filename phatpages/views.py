@@ -1,11 +1,6 @@
 from django.conf import settings
-from staticpages.models import FatPage
 
-try:
-    from coffin.template import loader, RequestContext
-except ImportError:
-    print 'ImportError'
-    from django.template import loader, RequestContext
+from django.template import loader, RequestContext
 
 from django.shortcuts import get_object_or_404
 from django.http import HttpResponse, HttpResponseRedirect
@@ -13,44 +8,40 @@ from django.core.xheaders import populate_xheaders
 from django.utils.safestring import mark_safe
 from django.views.decorators.csrf import csrf_protect
 
+from .models import PhatPage
 
-if hasattr(settings, 'FATPAGES_DEFAULT_TEMPLATE'):
-    DEFAULT_TEMPLATE = settings.FATPAGES_DEFAULT_TEMPLATE
+
+if hasattr(settings, 'PHATPAGES_DEFAULT_TEMPLATE'):
+    DEFAULT_TEMPLATE = settings.PHATPAGES_DEFAULT_TEMPLATE
 else:
     DEFAULT_TEMPLATE = 'staticpages/default.html'
 
 
-# This view is called from FatpageFallbackMiddleware.process_response
+# This view is called from PhatpageFallbackMiddleware.process_response
 # when a 404 is raised, which often means CsrfViewMiddleware.process_view
 # has not been called even if CsrfViewMiddleware is installed. So we need
 # to use @csrf_protect, in case the template needs {% csrf_token %}.
-# However, we can't just wrap this view; if no matching fatpage exists,
+# However, we can't just wrap this view; if no matching phatpage exists,
 # or a redirect is required for authentication, the 404 needs to be returned
 # without any CSRF checks. Therefore, we only
 # CSRF protect the internal implementation.
-def fatpage(request, url):
+def phatpage(request, url):
     """
-    Public interface to the fat page view.
+    Public interface to the phat page view.
 
-    Models: `staticpages.fatpages`
-    Templates: Uses the template defined by the ``template_name`` field,
-        or `fatpages/default.html` if template_name is not defined.
-    Context:
-        fatpage
-            `staticpages.fatpages` object
     """
     if not url.endswith('/') and settings.APPEND_SLASH:
         return HttpResponseRedirect("%s/" % request.path)
     if not url.startswith('/'):
         url = "/" + url
-    f = get_object_or_404(FatPage, url__exact=url)
+    f = get_object_or_404(PhatPage, url__exact=url)
     return render_fatpage(request, f)
 
 # If a default Cache-Header Max-Age is defined in the settings
 # Apply it to Fatpages
 if hasattr(settings, 'CACHE_HEADER_MAX_AGE'):
     from django.views.decorators.cache import cache_control
-    fatpage = cache_control(must_revalidate=True, max_age=settings.CACHE_HEADER_MAX_AGE)(fatpage)
+    phatpage = cache_control(must_revalidate=True, max_age=settings.CACHE_HEADER_MAX_AGE)(phatpage)
 
 
 @csrf_protect
@@ -78,5 +69,5 @@ def render_fatpage(request, f):
         'fatpage': f,
     })
     response = HttpResponse(t.render(c))
-    populate_xheaders(request, response, FatPage, f.id)
+    populate_xheaders(request, response, PhatPage, f.id)
     return response

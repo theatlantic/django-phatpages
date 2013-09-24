@@ -1,14 +1,14 @@
-from staticpages.views import fatpage
+from .views import phatpage
 from django.http import Http404
 from django.conf import settings
 
 
-class FatpageFallbackMiddleware(object):
+class PhatpageFallbackMiddleware(object):
     def process_response(self, request, response):
         if response.status_code != 404:
             return response  # No need to check for a fatpage for non-404 responses.
         try:
-            return fatpage(request, request.path_info)
+            return phatpage(request, request.path_info)
         # Return the original response if any errors happened. Because this
         # is a middleware, we can't assume the errors will be caught elsewhere.
         except Http404:

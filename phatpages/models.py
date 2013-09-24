@@ -3,14 +3,14 @@ from django.utils.translation import ugettext_lazy as _
 from ckeditor.fields import RichTextField
 
 
-class FatPage(models.Model):
+class PhatPage(models.Model):
     url = models.CharField(_('URL'), max_length=100, db_index=True)
     title = models.CharField(_('title'), max_length=200)
     content = RichTextField(null=True, blank=True)
     excerpt = RichTextField(null=True, blank=True)
     enable_comments = models.BooleanField(_('enable comments'))
     template_name = models.CharField(_('template name'), max_length=70, blank=True,
-                                     help_text=_("Example: 'staticpages/contact_page.html'. If this isn't provided, the system will use 'the default."))
+                                     help_text=_("Example: 'staticpages/contact_page.html'. If this isn't provided, the system will use the default."))
 
     registration_required = models.BooleanField(_('registration required'), help_text=_("If this is checked, only logged-in users will be able to view the page."))
 
