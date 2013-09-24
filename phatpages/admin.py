@@ -1,10 +1,11 @@
 from django import forms
 from django.contrib import admin
-from staticpages.models import FatPage
 from django.utils.translation import ugettext_lazy as _
 
+from .models import PhatPage
 
-class FatpageForm(forms.ModelForm):
+
+class PhatpageForm(forms.ModelForm):
     url = forms.RegexField(label=_("URL"), max_length=100, regex=r'^[-\w/]+$',
         help_text = _("Example: '/about/contact/'. Make sure to have leading"
                       " and trailing slashes."),
@@ -12,15 +13,16 @@ class FatpageForm(forms.ModelForm):
                           " underscores, dashes or slashes."))
 
     class Meta:
-        model = FatPage
+        model = PhatPage
 
 
-class FatPageAdmin(admin.ModelAdmin):
-    form = FatpageForm
+class PhatPageAdmin(admin.ModelAdmin):
+    form = PhatpageForm
     fieldsets = (
         (None, {'fields': ('url', 'title', 'content', 'enable_comments', 'excerpt', 'template_name')}),
     )
     list_display = ('title', 'url')
     search_fields = ('title', 'url')
 
-admin.site.register(FatPage, FatPageAdmin)
+
+admin.site.register(PhatPage, PhatPageAdmin)
