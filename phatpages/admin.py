@@ -19,9 +19,9 @@ class PhatpageForm(forms.ModelForm):
 class PhatPageAdmin(admin.ModelAdmin):
     form = PhatpageForm
     fieldsets = (
-        (None, {'fields': ('url', 'title', 'content', 'enable_comments', 'excerpt', 'template_name')}),
+        (None, {'fields': ('site', 'url', 'title', 'content', 'enable_comments', 'excerpt', 'template_name')}),
     )
-    list_display = ('title', 'url')
+    list_display = ('title', 'site', 'url')
     search_fields = ('title', 'url')
 
 
