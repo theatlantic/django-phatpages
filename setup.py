@@ -8,7 +8,7 @@ except ImportError:
 
 setup(
     name='django-phatpages',
-    version='0.2.1',
+    version=__import__('phatpages').__version__,
     description='A reusable Django application for simple static pages.',
     long_description=open('README.txt').read(),
     author='Josh West',
