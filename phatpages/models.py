@@ -23,6 +23,7 @@ class PhatPage(models.Model):
         verbose_name = _('static page')
         verbose_name_plural = _('static pages')
         ordering = ('url',)
+        unique_together = (('site', 'url'),)
 
     def __unicode__(self):
         return u"%s -- %s" % (self.url, self.title)
