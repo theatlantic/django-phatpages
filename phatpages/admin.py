@@ -14,6 +14,7 @@ class PhatpageForm(forms.ModelForm):
 
     class Meta:
         model = PhatPage
+        exclude = []
 
 
 class PhatPageAdmin(admin.ModelAdmin):
