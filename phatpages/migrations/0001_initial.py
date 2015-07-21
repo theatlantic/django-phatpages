@@ -1,44 +1,40 @@
 # -*- coding: utf-8 -*-
-import datetime
-from south.db import db
-from south.v2 import SchemaMigration
-from django.db import models
+from __future__ import unicode_literals
+
+from django.db import models, migrations
+import ckeditor.fields
 
 
-class Migration(SchemaMigration):
+class Migration(migrations.Migration):
 
-    def forwards(self, orm):
-        # Adding model 'PhatPage'
-        db.create_table('django_flatpage', (
-            ('id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
-            ('url', self.gf('django.db.models.fields.CharField')(max_length=100, db_index=True)),
-            ('title', self.gf('django.db.models.fields.CharField')(max_length=200)),
-            ('content', self.gf('ckeditor.fields.RichTextField')(null=True, blank=True)),
-            ('excerpt', self.gf('ckeditor.fields.RichTextField')(null=True, blank=True)),
-            ('enable_comments', self.gf('django.db.models.fields.BooleanField')(default=False)),
-            ('template_name', self.gf('django.db.models.fields.CharField')(max_length=70, blank=True)),
-            ('registration_required', self.gf('django.db.models.fields.BooleanField')(default=False)),
-        ))
-        db.send_create_signal('phatpages', ['PhatPage'])
+    dependencies = [
+        ('sites', '0001_initial'),
+    ]
 
-
-    def backwards(self, orm):
-        # Deleting model 'PhatPage'
-        db.delete_table('django_flatpage')
-
-
-    models = {
-        'phatpages.phatpage': {
-            'Meta': {'ordering': "('url',)", 'object_name': 'PhatPage', 'db_table': "'django_flatpage'"},
-            'content': ('ckeditor.fields.RichTextField', [], {'null': 'True', 'blank': 'True'}),
-            'enable_comments': ('django.db.models.fields.BooleanField', [], {'default': 'False'}),
-            'excerpt': ('ckeditor.fields.RichTextField', [], {'null': 'True', 'blank': 'True'}),
-            'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
-            'registration_required': ('django.db.models.fields.BooleanField', [], {'default': 'False'}),
-            'template_name': ('django.db.models.fields.CharField', [], {'max_length': '70', 'blank': 'True'}),
-            'title': ('django.db.models.fields.CharField', [], {'max_length': '200'}),
-            'url': ('django.db.models.fields.CharField', [], {'max_length': '100', 'db_index': 'True'})
-        }
-    }
-
-    complete_apps = ['phatpages']
+    operations = [
+        migrations.CreateModel(
+            name='PhatPage',
+            fields=[
+                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+                ('url', models.CharField(max_length=100, verbose_name='URL', db_index=True)),
+                ('title', models.CharField(max_length=200, verbose_name='title')),
+                ('content', ckeditor.fields.RichTextField(null=True, blank=True)),
+                ('excerpt', ckeditor.fields.RichTextField(null=True, blank=True)),
+                ('enable_comments', models.BooleanField(default=False, verbose_name='enable comments')),
+                ('template_name', models.CharField(help_text="Example: 'staticpages/contact_page.html'. If this isn't provided, the system will use the default.", max_length=70, verbose_name='template name', blank=True)),
+                ('registration_required', models.BooleanField(default=False, help_text='If this is checked, only logged-in users will be able to view the page.', verbose_name='registration required')),
+                ('site', models.ForeignKey(to='sites.Site')),
+            ],
+            options={
+                'ordering': ('url',),
+                'db_table': 'django_flatpage',
+                'verbose_name': 'static page',
+                'verbose_name_plural': 'static pages',
+            },
+            bases=(models.Model,),
+        ),
+        migrations.AlterUniqueTogether(
+            name='phatpage',
+            unique_together=set([('site', 'url')]),
+        ),
+    ]
