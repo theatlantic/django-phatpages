@@ -7,10 +7,10 @@ from .models import PhatPage
 
 class PhatpageForm(forms.ModelForm):
     url = forms.RegexField(label=_("URL"), max_length=100, regex=r'^[-\w/]+$',
-        help_text = _("Example: '/about/contact/'. Make sure to have leading"
-                      " and trailing slashes."),
-        error_message = _("This value must contain only letters, numbers,"
-                          " underscores, dashes or slashes."))
+        help_text=_("Example: '/about/contact/'. Make sure to have leading"
+                    " and trailing slashes."),
+        error_messages={"invalid": _("This value must contain only letters, numbers,"
+                                     " underscores, dashes or slashes.")})
 
     class Meta:
         model = PhatPage
