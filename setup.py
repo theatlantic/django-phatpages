@@ -9,7 +9,7 @@ except ImportError:
 
 setup(
     name='django-phatpages',
-    version='2.0.3',
+    version='2.0.4',
     description='A reusable Django application for simple static pages.',
     long_description=open('README.txt').read(),
     author='Josh West',
