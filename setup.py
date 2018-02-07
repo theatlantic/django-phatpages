@@ -1,10 +1,11 @@
-#!/usr/bin/python
+#!/usr/bin/env python
 
-# Use setuptools if we can
 try:
-    from setuptools.core import setup
+    from setuptools import setup, find_packages
 except ImportError:
-    from distutils.core import setup
+    from ez_setup import use_setuptools
+    use_setuptools()
+    from setuptools import setup, find_packages
 
 setup(
     name='django-phatpages',
@@ -14,5 +15,5 @@ setup(
     author='Josh West',
     url='https://github.com/theatlantic/django-phatpages',
     download_url='https://github.com/theatlantic/django-phatpages/tarball/master',
-    packages=['phatpages'],
+    packages=find_packages(),
 )
