@@ -7,7 +7,7 @@ from ckeditor.fields import RichTextField
 
 class PhatPage(models.Model):
 
-    site = models.ForeignKey(Site, blank=False, null=False)
+    site = models.ForeignKey(Site, on_delete=models.CASCADE)
     url = models.CharField(_('URL'), max_length=100, db_index=True)
     title = models.CharField(_('title'), max_length=200)
     content = RichTextField(null=True, blank=True)
