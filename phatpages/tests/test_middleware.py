@@ -15,7 +15,7 @@ middleware_classes = settings.MIDDLEWARE_CLASSES + ('phatpages.middleware.Phatpa
 class TestPhatpageViewFunction(TestCase):
 
     def setUp(self, *args, **kwargs):
-        site = Site.objects.create(id=42, domain="example.com", name="example")
+        site = Site.objects.create(id=42, domain="phatpages.com", name="phatpages")
         PhatPage.objects.create(site=site, url="test-url", title="title", content="content")
 
     @override_settings(PHATPAGE_VIEW="phatpages.tests.views.view_function")

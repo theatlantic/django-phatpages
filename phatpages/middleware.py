@@ -4,11 +4,12 @@ from django.conf import settings
 from django.core.exceptions import ImproperlyConfigured
 from django.shortcuts import get_object_or_404
 from django.http import Http404
+from django.utils.deprecation import MiddlewareMixin
 
 from .models import PhatPage
 
 
-class PhatpageFallbackMiddleware(object):
+class PhatpageFallbackMiddleware(MiddlewareMixin):
 
     @property
     def phatpage_view(self):
