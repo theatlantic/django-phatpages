@@ -16,7 +16,10 @@ class PhatpageFallbackMiddleware(MiddlewareMixin):
         try:
             view_settings_str = settings.PHATPAGE_VIEW
         except AttributeError:
-            raise ImproperlyConfigured("You must define a 'PHATPAGE_VIEW' variable in your settings before using the PhatpageFallbackMiddleware")
+            raise ImproperlyConfigured(
+                "You must define a 'PHATPAGE_VIEW' variable in your settings "
+                "before using the PhatpageFallbackMiddleware"
+            )
         module_str, view_str = view_settings_str.rsplit(".", 1)
         module = importlib.import_module(module_str)
         view = getattr(module, view_str)
@@ -29,7 +32,11 @@ class PhatpageFallbackMiddleware(MiddlewareMixin):
         if response.status_code != 404:
             return response  # No need to check for a fatpage for non-404 responses.
         try:
-            page = get_object_or_404(PhatPage, url=request.path_info, site_id=settings.SITE_ID)
+            page = get_object_or_404(
+                PhatPage,
+                url=request.path_info,
+                site_id=settings.SITE_ID
+            )
             response = self.phatpage_view(request, page)
             if hasattr(response, 'render'):
                 response.render()
