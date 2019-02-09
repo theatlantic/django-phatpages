@@ -1,3 +1,13 @@
+__pycache__/
 *~
-*.pyc
+*.py[cod]
 *.egg-info
+build/
+dist/
+.eggs/
+*.egg-info/
+MANIFEST
+.tox/
+.coverage
+.python-version
+venv/
