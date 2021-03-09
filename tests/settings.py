@@ -40,7 +40,7 @@ TEMPLATES = [{
             'django.contrib.auth.context_processors.auth',
         ],
     },
-},]
+}]
 
 DATABASES = {
     'default': {'ENGINE': 'django.db.backends.sqlite3', 'NAME': 'db.sqlite'}
