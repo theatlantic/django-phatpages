@@ -1,6 +1,6 @@
 from django import forms
 from django.contrib import admin
-from django.utils.translation import ugettext_lazy as _
+from django.utils.translation import gettext_lazy as _
 
 from .models import PhatPage
 
@@ -23,6 +23,7 @@ class PhatpageForm(forms.ModelForm):
         exclude = []
 
 
+@admin.register(PhatPage)
 class PhatPageAdmin(admin.ModelAdmin):
     form = PhatpageForm
     fieldsets = (
@@ -33,6 +34,3 @@ class PhatPageAdmin(admin.ModelAdmin):
     )
     list_display = ('title', 'site', 'url')
     search_fields = ('title', 'url')
-
-
-admin.site.register(PhatPage, PhatPageAdmin)
