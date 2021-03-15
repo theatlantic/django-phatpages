@@ -12,4 +12,4 @@ Notes
 =====
 
 * version 3.1.0 has added a BSD license (see LICENSE file)
-* version 3.3 supports Django>=2.2 
+* version 4.0.0 supports Django>=2.2,<4.0
