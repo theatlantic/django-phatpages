@@ -2,8 +2,8 @@
 django-phatpages
 ================
 
-.. image:: https://travis-ci.org/theatlantic/django-phatpages.svg?branch=py3compat
-    :target: https://travis-ci.org/theatlantic/django-phatpages
+.. image:: https://github.com/theatlantic/django-phatpages/actions/workflows/test.yml/badge.svg
+    :target: https://github.com/theatlantic/django-phatpages
 
 
 A fork of the Django-Flatpages contrib app with a WYSIWYG editor.
